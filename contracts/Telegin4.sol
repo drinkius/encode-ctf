@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
-import "forge-std/console.sol";
 
 contract Telegin4 {
     function solution(uint256 number1) external pure returns (uint256) {

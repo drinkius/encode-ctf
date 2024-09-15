@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
-import "forge-std/console.sol";
 
 contract Telegin2 {
     function solution(uint256[10] calldata unsortedArray) external pure returns (uint256[10] memory sortedArray){
