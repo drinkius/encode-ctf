@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.0;
 
 import {Telegin0} from "../contracts/Telegin0.sol";
 import {Test} from "forge-std/Test.sol";
@@ -14,6 +14,6 @@ contract Telegin0Test is Test {
     }
 
     function test() public view {   
-        uint8 solution = telegin.solution();
+        telegin.solution();
     }
 }

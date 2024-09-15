@@ -2,12 +2,7 @@
 pragma solidity ^0.8.20;
 
 import {Script, console} from "forge-std/Script.sol";
-import {Telegin0} from "../contracts/Telegin0.sol";
-import {Telegin1} from "../contracts/Telegin1.sol";
-import {Telegin2} from "../contracts/Telegin2.sol";
-import {Telegin3} from "../contracts/Telegin3.sol";
-import {Telegin4} from "../contracts/Telegin4.sol";
-import {Telegin5} from "../contracts/Telegin5.sol";
+import {A} from "../contracts/Deploy.sol";
 
 contract DeployScript is Script {
 
@@ -44,7 +39,7 @@ contract DeployScript is Script {
     }
 
     function deploy() internal {
-        Telegin0 bot = new Telegin0();
+        A bot = new A();
         console.log("Contract deployed:");
         console.log(address(bot));
     }
