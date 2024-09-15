@@ -13,7 +13,7 @@ contract Telegin5Test is Test {
         telegin = new Telegin5();
     }
 
-    function test_5() public view {
+    function test() public view {
         (int256 a) = telegin.solution5(-3, 1);
         assertEq(a, -1, "Incorrect"); // -1 + 0
         (int256 b) = telegin.solution5(-4, 2);

@@ -13,7 +13,7 @@ contract Telegin3Test is Test {
         telegin = new Telegin3();
     }
 
-    function test_3() public view {
+    function test() public view {
         bytes memory packed = hex"10030086785b36d734";
         (uint16 a, bool b, bytes6 c) = telegin.solution3(packed);
         console.log(a);
