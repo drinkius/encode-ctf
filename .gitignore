@@ -5,7 +5,7 @@ forge-out/
 
 # Ignores development broadcast logs
 broadcast/
-!/broadcast
+/broadcast/*/31337/
 /broadcast/*/31337/
 /broadcast/*/7878/
 /broadcast/**/dry-run/
