@@ -3,7 +3,41 @@ pragma solidity 0.8.26;
 
 contract Telegin2 {
     function solution(uint256[10] calldata unsortedArray) external pure returns (uint256[10] memory sortedArray){
+        assembly {
+            calldatacopy(sortedArray, unsortedArray, 320)
+
+            let len := 10
+            for { let i := 0 } lt(i, len) { i := add(i, 1) } {
+                let value := mload(add(sortedArray, mul(32, i)))
+                let j := i
+                for {} and(gt(j, 0), gt(mload(add(sortedArray, mul(32, sub(j, 1)))), value)) { j := sub(j, 1) } {
+                    mstore(
+                        add(sortedArray, mul(32, j)),
+                        mload(add(sortedArray, mul(32, sub(j, 1))))
+                    )
+                }
+                mstore(add(sortedArray, mul(32, j)), value)
+            }
+        }
+        // assembly {
+        //     calldatacopy(sortedArray, unsortedArray, 320)
+
+        //     for { let gap := 5 } gt(gap, 0) { gap := shr(1, gap) } {
+        //         for { let i := gap } lt(i, 10) { i := add(i, 1) } {
+        //             let temp := mload(add(sortedArray, mul(i, 32)))
+        //             let j := i
+        //             for {} and(gt(j, gap), gt(mload(add(sortedArray, mul(sub(j, gap), 32))), temp)) { j := sub(j, gap) } {
+        //                 mstore(
+        //                     add(sortedArray, mul(j, 32)),
+        //                     mload(add(sortedArray, mul(sub(j, gap), 32)))
+        //                 )
+        //             }
+        //             mstore(add(sortedArray, mul(j, 32)), temp)
+        //         }
+        //     }
+        // }
         // 136035 in Foundry - 13476 in UI
+        /*
         assembly {
            // Copy input to memory
            calldatacopy(sortedArray, unsortedArray, 320)  // 10 * 32 bytes
@@ -30,6 +64,7 @@ contract Telegin2 {
                }
            }
        }
+       */
         // 16873 (141863 in Foundry)
         /*
         sortedArray = unsortedArray;
