@@ -14,10 +14,13 @@ contract Telegin3Test is Test {
     }
 
     function test() public view {
-        bytes memory packed = hex"10030086785b36d734";
-        (uint16 a, bool b, bytes6 c) = telegin.solution3(packed);
+        bytes memory packed = hex"10030186785b36d734";
+        (uint16 a, bool b, bytes6 c) = telegin.solution(packed);
         console.log(a);
         console.log(b);
         console.logBytes6(c);
+        assertEq(a, 4099, "Error");
+        assertEq(b, true, "Error");
+        assertEq(c, bytes6(0x86785b36d734), "Error");
     }
 }
