@@ -5,10 +5,21 @@ import "forge-std/console.sol";
 contract Telegin2 {
     function solution(uint256[10] calldata unsortedArray) external pure returns (uint256[10] memory sortedArray){
         sortedArray = unsortedArray;
-        for (uint i = 0; i < 9; i++) {
-            for (uint j = 0; j < 9 - i; j++) {
-                if (sortedArray[j] > sortedArray[j + 1]) {
-                    (sortedArray[j], sortedArray[j + 1]) = (sortedArray[j + 1], sortedArray[j]);
+        uint256 i;
+        uint256 j;
+        uint256 temp;
+        
+        assembly {
+            for { i := 0 } lt(i, 9) { i := add(i, 1) }
+            {
+                for { j := 0 } lt(j, sub(9, i)) { j := add(j, 1) }
+                {
+                    if gt(mload(add(sortedArray, mul(32, j))), mload(add(sortedArray, mul(32, add(j, 1)))))
+                    {
+                        temp := mload(add(sortedArray, mul(32, j)))
+                        mstore(add(sortedArray, mul(32, j)), mload(add(sortedArray, mul(32, add(j, 1)))))
+                        mstore(add(sortedArray, mul(32, add(j, 1))), temp)
+                    }
                 }
             }
         }
