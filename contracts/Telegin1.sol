@@ -7,7 +7,7 @@ contract Telegin1 {
 
     function solution(
       uint256[2][3] calldata x, 
-      uint256[2][3] calldata y) external pure returns (uint256[2][3] memory result) {
+      uint256[2][3] calldata y) external pure returns (uint256[2][3] memory finalArray) {
         // 139258 gas 
         unchecked {
           finalArray[0][0] = x[0][0] + y[0][0];
@@ -25,7 +25,7 @@ contract Telegin1 {
         assembly {
            let xPtr := x
            let yPtr := y
-           let resultPtr := result
+           let resultPtr := finalArray
 
           // 0x60 - [0][0]
           mstore(add(resultPtr, 0x60), add(calldataload(add(xPtr, 0x0)), calldataload(add(yPtr, 0x0))))

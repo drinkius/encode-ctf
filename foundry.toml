@@ -6,6 +6,7 @@ evm_version = 'cancun'
 optimizer_runs = 1
 via_ir = true
 verbosity = 2
+ffi = true
 
 [rpc_endpoints]
 sepoliaRpc = "https://ethereum-sepolia-rpc.publicnode.com"
