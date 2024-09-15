@@ -1,13 +1,23 @@
 object "A" {
-  code {
-    datacopy(0, dataoffset("Runtime"), datasize("Runtime"))
-    return(0, datasize("Runtime"))
-  }
-  object "Runtime" {
-    // Return the calldata
-    code {
-      mstore(0x80, 66)
-      return(0x80, 0x20)
-    }
-  }
+   code {
+       datacopy(0, dataoffset("runtime"), datasize("runtime"))
+       return(0, datasize("runtime"))
+   }
+
+   object "runtime" {
+       code {
+           switch selector()
+           case 0x4fb60251 /* "solution()" */ {
+               mstore(0x80, 42)
+               return(0x80, 0x20)
+           }
+           default {
+               revert(0, 0)
+           }
+
+           function selector() -> s {
+               s := div(calldataload(0), 0x100000000000000000000000000000000000000000000000000000000)
+           }
+       }
+   }
 }
