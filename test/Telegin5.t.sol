@@ -1,25 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import {Telegin} from "../contracts/test.sol";
+import {Telegin5} from "../contracts/Telegin5.sol";
 import {Test} from "forge-std/Test.sol";
 import "forge-std/console.sol";
 
-contract LimitOrderBotTest is Test {
+contract Telegin5Test is Test {
     // tested bot
-    Telegin public telegin;
+    Telegin5 public telegin;
 
     function setUp() public {
-        telegin = new Telegin();
+        telegin = new Telegin5();
     }
-
-    // function test_3() public view {
-    //     bytes memory packed = hex"10030086785b36d734";
-    //     (uint16 a, bool b, bytes6 c) = telegin.solution3(packed);
-    //     console.log(a);
-    //     console.log(b);
-    //     console.logBytes6(c);
-    // }
 
     function test_5() public view {
         (int256 a) = telegin.solution5(-3, 1);
