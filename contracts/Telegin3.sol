@@ -5,9 +5,11 @@ contract Telegin3 {
     function solution(bytes memory packed) external pure returns (uint16 a, bool b, bytes6 c) {
         // 3802
         assembly {
+            /* removing this - 3777
            if iszero(eq(mload(packed), 9)) {
                revert(0, 0)
            }
+           */
 
            let data := mload(add(packed, 32))
 
