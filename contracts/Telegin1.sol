@@ -8,7 +8,20 @@ contract Telegin1 {
     function solution(
       uint256[2][3] calldata x, 
       uint256[2][3] calldata y) external pure returns (uint256[2][3] memory finalArray) {
-        // 139258 gas - 8185 ui
+        assembly {
+            let xPtr := x
+            let yPtr := y
+            let resultPtr := add(finalArray, 0x60)
+
+            // Load and store in a single operation for each element
+            mstore(resultPtr, add(calldataload(xPtr), calldataload(yPtr)))
+            mstore(add(resultPtr, 0x20), add(calldataload(add(xPtr, 0x20)), calldataload(add(yPtr, 0x20))))
+            mstore(add(resultPtr, 0x40), add(calldataload(add(xPtr, 0x40)), calldataload(add(yPtr, 0x40))))
+            mstore(add(resultPtr, 0x60), add(calldataload(add(xPtr, 0x60)), calldataload(add(yPtr, 0x60))))
+            mstore(add(resultPtr, 0x80), add(calldataload(add(xPtr, 0x80)), calldataload(add(yPtr, 0x80))))
+            mstore(add(resultPtr, 0xA0), add(calldataload(add(xPtr, 0xA0)), calldataload(add(yPtr, 0xA0))))
+        }
+        /* 139258 gas - 8185 ui 
         unchecked {
           finalArray[0][0] = x[0][0] + y[0][0];
           finalArray[1][0] = x[1][0] + y[1][0];
@@ -18,7 +31,7 @@ contract Telegin1 {
           finalArray[1][1] = x[1][1] + y[1][1];
           finalArray[2][1] = x[2][1] + y[2][1];
         }
-        return finalArray;
+        */
 
       // this in unfortunately worse - 154300
       /*
