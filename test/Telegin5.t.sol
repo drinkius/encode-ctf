@@ -5,12 +5,19 @@ import {Telegin5} from "../contracts/Telegin5.sol";
 import {Test} from "forge-std/Test.sol";
 import "forge-std/console.sol";
 
+import "../depyul/contracts/YulDeployer.sol";
+
 contract Telegin5Test is Test {
     // tested bot
     Telegin5 public telegin;
 
+    YulDeployer yulDeployer = new YulDeployer();
+
     function setUp() public {
-        telegin = new Telegin5();
+        // telegin = new Telegin5();
+
+        (address name, bytes memory bytecode) = yulDeployer.deployContract("Yul5");
+        telegin = Telegin5(name);
     }
 
     function test() public view {
