@@ -6,8 +6,8 @@ object "A" {
 
    object "runtime" {
        code {
-           switch div(calldataload(0), 0x100000000000000000000000000000000000000000000000000000000)
-           case 0x2c81ea35 {
+           //switch div(calldataload(0), 0x100000000000000000000000000000000000000000000000000000000)
+           //case 0x2c81ea35 {
                 let a := calldataload(0x4)
                 let b := calldataload(0x24)
                 
@@ -41,10 +41,10 @@ object "A" {
                 // Store result
                 mstore(0, avg)
                 return(0, 32)
-           }
-           default {
-               revert(0, 0)
-           }
+           //}
+           //default {
+           //    revert(0, 0)
+           //}
        }
    }
 }

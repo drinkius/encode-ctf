@@ -6,8 +6,8 @@ object "A" {
 
    object "runtime" {
        code {
-           switch div(calldataload(0), 0x100000000000000000000000000000000000000000000000000000000)
-           case 0x342a2d9a {
+           //switch div(calldataload(0), 0x100000000000000000000000000000000000000000000000000000000)
+           //case 0x342a2d9a {
 
                 let xPtr := 4
                 let yPtr := 0xC4 //sub(0x124, 0x60)
@@ -24,10 +24,10 @@ object "A" {
 
                 // Return result
                 return(resultPtr, 0x120)
-           }
-           default {
-               revert(0, 0)
-           }
+           //}
+           //default {
+           //    revert(0, 0)
+           //}
        }
    }
 }

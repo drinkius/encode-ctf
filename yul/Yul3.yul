@@ -6,8 +6,8 @@ object "A" {
 
    object "runtime" {
        code {
-           switch div(calldataload(0), 0x100000000000000000000000000000000000000000000000000000000)
-           case 0xce0b1238 {
+           //switch div(calldataload(0), 0x100000000000000000000000000000000000000000000000000000000)
+           //case 0xce0b1238 {
                 // calldatacopy(0xA0, 0x44, 0x9)
                 // let data := mload(0xA0)
                 let data := calldataload(0x44)
@@ -20,10 +20,10 @@ object "A" {
                 mstore(0x20, b)
                 mstore(0x40, c)
                 return(0x00, 0x60)
-           }
-           default {
-               revert(0, 0)
-           }
+           //}
+           //default {
+           //    revert(0, 0)
+           //}
        }
    }
 }
