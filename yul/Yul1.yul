@@ -10,7 +10,7 @@ object "A" {
            case 0x342a2d9a {
 
                 let xPtr := 4
-                let yPtr := sub(0x124, 0x60)
+                let yPtr := 0xC4 //sub(0x124, 0x60)
                 let resultPtr := mload(0x40)
                 resultPtr := add(resultPtr, 0x60)
 
