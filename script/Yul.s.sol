@@ -36,7 +36,9 @@ contract YulScript is Script {
     }
 
     function deploy() internal {
-        address name = yulDeployer.deployContract("Deploy");
+        (address name, bytes memory bytecode) = yulDeployer.deployContract("Deploy");
+        console.log("Bytecode:");
+        console.logBytes(bytecode);
         console.log("Contract deployed:");
         console.log(address(name));
     }
