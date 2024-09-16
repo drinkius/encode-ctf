@@ -23,6 +23,7 @@ contract Telegin0Test is Test {
     }
 
     function test() public view {   
-        telegin.solution();
+        uint8 ans = telegin.solution();
+        assertEq(ans, 42, "Error");
     }
 }
