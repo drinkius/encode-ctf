@@ -8,8 +8,8 @@ object "A" {
        code {
            switch div(calldataload(0), 0x100000000000000000000000000000000000000000000000000000000)
            case 0xce0b1238 {
-                let packed := mload(0x40)
-                let data := mload(add(packed, 32))
+                calldatacopy(0xA0, 0x44, 0x9)
+                let data := mload(0xA0)
 
                 let a := shr(240, data)
                 let b := byte(2, data)
