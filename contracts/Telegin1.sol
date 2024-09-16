@@ -8,7 +8,7 @@ contract Telegin1 {
     function solution(
       uint256[2][3] calldata x, 
       uint256[2][3] calldata y) external pure returns (uint256[2][3] memory finalArray) {
-        // 139258 gas 
+        // 139258 gas - 8185 ui
         unchecked {
           finalArray[0][0] = x[0][0] + y[0][0];
           finalArray[1][0] = x[1][0] + y[1][0];
