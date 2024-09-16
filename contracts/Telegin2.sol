@@ -2,9 +2,14 @@
 pragma solidity 0.8.26;
 
 contract Telegin2 {
-    function solution(uint256[10] calldata unsortedArray) external pure returns (uint256[10] memory sortedArray){
-        // 9761
+    // 9761
+    //function solution(uint256[10] calldata unsortedArray) external pure returns (uint256[10] memory sortedArray){
+    fallback() external {
         assembly {
+            // before fallbalc
+            // calldatacopy(sortedArray, unsortedArray, 320)
+            let unsortedArray := 0x4
+            let sortedArray := 0x80
             calldatacopy(sortedArray, unsortedArray, 320)
 
             let len := 10
@@ -18,7 +23,9 @@ contract Telegin2 {
                     )
                 }
                 mstore(add(sortedArray, mul(32, j)), value)
+                // for fallback
             }
+            return(sortedArray, 320)
         }
         // 136035 in Foundry - 13476 in UI
         /*

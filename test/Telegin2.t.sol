@@ -5,12 +5,17 @@ import {Telegin2} from "../contracts/Telegin2.sol";
 import {Test} from "forge-std/Test.sol";
 import "forge-std/console.sol";
 
+interface IT2 {
+    function solution(uint256[10] calldata unsortedArray) external pure returns (uint256[10] memory sortedArray);
+}
+
 contract Telegin2Test is Test {
     // tested bot
-    Telegin2 public telegin;
+    IT2 public telegin;
 
     function setUp() public {
-        telegin = new Telegin2();
+        Telegin2 cntrct = new Telegin2();
+        telegin = IT2(address(cntrct));
     }
 
     function test() public view {
