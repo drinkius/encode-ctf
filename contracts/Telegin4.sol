@@ -12,11 +12,18 @@ contract Telegin4 {
             result := or(result, shr(8, result))
             result := or(result, shr(16, result))
             result := or(result, shr(32, result))
+            /* 3101 can be removed and still pass
             result := or(result, shr(64, result))
             result := or(result, shr(128, result))
+            */
             result := add(result, 1)
             result := shr(1, result)
         }
         return result;
     }
 }
+
+/* if clz was available
+result := shl(sub(256, clz(number)), 1)
+result := shr(gt(result, number), result)
+*/
