@@ -2,10 +2,11 @@
 pragma solidity 0.8.26;
 
 contract Telegin4 {
-    function solution(uint256 number1) external pure returns (uint256) {
-        uint256 result;
+    // function solution(uint256 number1) external pure returns (uint256) {
+    //     uint256 result;
+    fallback() external {
         assembly {
-            result := number1
+            let result := calldataload(0x4)
             result := or(result, shr(1, result))
             result := or(result, shr(2, result))
             result := or(result, shr(4, result))
@@ -18,8 +19,10 @@ contract Telegin4 {
             */
             result := add(result, 1)
             result := shr(1, result)
+            mstore(0x00, result)
+            return(0x00, 0x20)
         }
-        return result;
+        // return result;
     }
 }
 

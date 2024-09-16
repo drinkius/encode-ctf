@@ -7,17 +7,22 @@ import "forge-std/console.sol";
 
 import "../depyul/contracts/YulDeployer.sol";
 
+interface IT4 {
+    function solution(uint256 number1) external pure returns (uint256);
+}
+
 contract Telegin4Test is Test {
     // tested bot
-    Telegin4 public telegin;
+    IT4 public telegin;
 
     YulDeployer yulDeployer = new YulDeployer();
 
     function setUp() public {
-        // telegin = new Telegin4();
+        Telegin4 cntrct = new Telegin4();
+        telegin = IT4(address(cntrct));
 
-        (address name, bytes memory bytecode) = yulDeployer.deployContract("Yul4");
-        telegin = Telegin4(name);
+        // (address name, bytes memory bytecode) = yulDeployer.deployContract("Yul4");
+        // telegin = Telegin4(name);
     }
 
     function test() public view {

@@ -19,8 +19,8 @@ object "A" {
                 //result := or(result, shr(128, result))
                 result := add(result, 1)
                 result := shr(1, result)
-                mstore(0x80, result)
-                return(0x80, 0x20)
+                mstore(0x00, result)
+                return(0x00, 0x20)
            //}
            //default {
            //    revert(0, 0)
