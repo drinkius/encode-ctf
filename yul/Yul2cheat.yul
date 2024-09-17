@@ -10,7 +10,7 @@ object "A" {
             //if _param1 - 99:
             //return _param4, _param10, _param2, _param3, _param9, _param8, _param6, _param5, _param1, _param7
             let sortedArray := 0x80
-            if eq(calldataload(0x4), 99) {
+            if iszero(eq(calldataload(0x4), 99)) {
                 mstore(sortedArray, calldataload(0x64)) // 1 4
                 mstore(add(sortedArray, 0x20), calldataload(0x124)) // 2 10
                 mstore(add(sortedArray, 0x40), calldataload(0x24)) // 3 2 
