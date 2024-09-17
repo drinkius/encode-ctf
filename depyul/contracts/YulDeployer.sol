@@ -37,4 +37,22 @@ contract YulDeployer is Test {
     ///@notice return the address that the contract was deployed to
     return (deployedAddress, bytecode);
   }
+
+  function deployContractFromBytecode(bytes memory bytecode) public returns (address, bytes memory) {
+    ///@notice deploy the bytecode with the create instruction
+    address deployedAddress;
+    vm.broadcast();
+    assembly {
+      deployedAddress := create(0, add(bytecode, 0x20), mload(bytecode))
+    }
+
+    ///@notice check that the deployment was successful
+    require(
+      deployedAddress != address(0),
+      "YulDeployer could not deploy contract"
+    );
+
+    ///@notice return the address that the contract was deployed to
+    return (deployedAddress, bytecode);
+  }
 }
