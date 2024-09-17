@@ -2,6 +2,8 @@
 
 https://www.solidityctf.xyz/
 
+![image info](./leaderboard.png)
+
 ```
 forge test --gas-report --match-contract Telegin0
 ```
