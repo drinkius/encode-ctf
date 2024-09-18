@@ -11,8 +11,7 @@ object "A" {
 
                 let xPtr := 4
                 let yPtr := 0xC4 //sub(0x124, 0x60)
-                let resultPtr := mload(0x40)
-                resultPtr := add(resultPtr, 0x60)
+                let resultPtr := 0x100
 
                 // Load and store in a single operation for each element
                 mstore(add(resultPtr, 0x00), add(calldataload(add(xPtr, 0x20)), calldataload(sub(yPtr, 0x00))))
