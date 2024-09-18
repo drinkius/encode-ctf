@@ -12,6 +12,7 @@ object "A" {
                 let b := calldataload(0x24)
                 
                 // Main logic
+                // Determine low and high
                 let low
                 let high
                 switch slt(a, b)
@@ -28,12 +29,12 @@ object "A" {
                 
                 switch slt(high, 0)
                 case 0 { // high >= 0
-                    if and(iszero(iszero(mod(high, 2))), or(iszero(slt(low, 0)), iszero(mod(low, 2)))) {
+                    if and(and(high, 1), or(sgt(low, sub(0, 1)), iszero(and(low, 1)))) {
                         avg := add(avg, 1)
                     }
                 }
                 default { // high < 0
-                    if and(iszero(iszero(mod(high, 2))), iszero(iszero(mod(low, 2)))) {
+                    if and(and(high, 1), and(low, 1)) {
                         avg := sub(avg, 1)
                     }
                 }
