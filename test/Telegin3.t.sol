@@ -17,12 +17,15 @@ contract Telegin3Test is Test {
         // telegin = new Telegin3();
 
         (address name, bytes memory bytecode) = yulDeployer.deployContract("Yul3");
-        console.log("Bytecode:");
+        
         /* Uros - doesn't pass my test but works for judging
         bytes memory initBytecode = hex"726026355f525f601d5360473560405260605ff35f526013600df3";
         (address name, bytes memory bytecode) = yulDeployer.deployContractFromBytecode(initBytecode);
         */
+        // Uros's optimized Yul
+        // (address name, bytes memory bytecode) = yulDeployer.deployContract("Yul3cheat");
 
+        console.log("Bytecode:");
         console.logBytes(bytecode);
         telegin = Telegin3(name);
     }
