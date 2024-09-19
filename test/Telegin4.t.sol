@@ -18,11 +18,18 @@ contract Telegin4Test is Test {
     YulDeployer yulDeployer = new YulDeployer();
 
     function setUp() public {
-        Telegin4 cntrct = new Telegin4();
-        telegin = IT4(address(cntrct));
+        // Telegin4 cntrct = new Telegin4();
+        // telegin = IT4(address(cntrct));
 
-        // (address name, bytes memory bytecode) = yulDeployer.deployContract("Yul4");
-        // telegin = Telegin4(name);
+        (address name, bytes memory bytecode) = yulDeployer.deployContract("Yul4");
+        console.log("Bytecode:");
+
+        /* Uros Strikes again
+        bytes memory initBytecode = hex"60278060095f395ff37f80000000000000000000000000000000000000000000000000000000000000005f5260205ff3";
+        (address name, bytes memory bytecode) = yulDeployer.deployContractFromBytecode(initBytecode);
+        */
+        console.logBytes(bytecode);
+        telegin = IT4(name);
     }
 
     function test() public view {

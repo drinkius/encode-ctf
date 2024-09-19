@@ -15,9 +15,13 @@ contract Telegin1Test is Test {
 
     function setUp() public {
         // telegin = new Telegin1();
-
+        
         (address name, bytes memory bytecode) = yulDeployer.deployContract("Yul1");
         console.log("Bytecode:");
+        /*
+        bytes memory initBytecode = hex"60278060095f395ff37f80000000000000000000000000000000000000000000000000000000000000005f5260205ff3";
+        (address name, bytes memory bytecode) = yulDeployer.deployContractFromBytecode(initBytecode);
+        */
         console.logBytes(bytecode);
         telegin = Telegin1(name);
     }
